@@ -1,0 +1,65 @@
+// install.hexa — hx build hook for hexa-bot.
+//
+// Invoked by `hx install hexa-bot` (hexa-lang package manager) right after
+// the GitHub checkout (or symlink from /Users/ghost/core/hexa-bot) lands in
+// $HX_PKG_DIR. hx passes:
+//   HX_PKG_DIR     — absolute path to the package root
+//   HX_BIN_DIR     — ~/.hx/bin
+//   HX_PKG_NAME    — "hexa-bot"
+//   HX_HOOK_PHASE  — "pre" | "post" | "both" (default: "both")
+//
+// Mirrors hexa-bio/install.hexa pattern (extracted 2026-05-06).
+//
+// Responsibilities (each idempotent, raw#9 STRICT):
+//   1. Pre-install: no-op (spec-only v1.0.0 — zero deps).
+//   2. Post-install: run `hexa-bot selftest` via the freshly-staged
+//      cli/hexa-bot.hexa. Selftest output captured; non-PASS = warn-only.
+//
+// raw#9 hexa-only, raw#11 snake_case, raw#15 no-hardcode.
+// raw#10 honest C3: see hexa-bot/README.md "Status" section.
+
+fn run_quick_selftest(root: str) -> bool {
+    let cli = root + "/cli/hexa-bot.hexa"
+    let exists = exec("[ -f \"" + cli + "\" ] && echo y || echo n").trim()
+    if exists != "y" {
+        eprintln("[hexa-bot/install] WARN: cli/hexa-bot.hexa missing — skip selftest")
+        return false
+    }
+    println("[hexa-bot/install] [post] running quick selftest (4-verb spec sweep)")
+    let cmd = "HEXA_BOT_ROOT=\"" + root + "\" hexa run \"" + cli + "\" selftest 2>&1"
+    let raw = exec(cmd)
+    if raw.contains("__HEXA_BOT_SELFTEST__ PASS") {
+        println("[hexa-bot/install]   selftest PASS — 4/4 spec sentinels present")
+        return true
+    }
+    eprintln("[hexa-bot/install] WARN: selftest non-PASS (warn-only, not a blocker)")
+    eprintln("  hint: missing spec file or sentinel mismatch — see README §Status")
+    return false
+}
+
+fn main() -> void {
+    let mut root = env("HX_PKG_DIR")
+    if root == "" { root = exec("pwd").trim() }
+    let phase = env("HX_HOOK_PHASE")
+    let mut p = phase
+    if p == "" { p = "both" }
+    println("[hexa-bot/install] HX_PKG_DIR=" + root + " phase=" + p)
+
+    let entry = root + "/cli/hexa-bot.hexa"
+    let entry_ok = exec("[ -f \"" + entry + "\" ] && echo y || echo n").trim()
+    if entry_ok != "y" {
+        eprintln("[hexa-bot/install] ERROR: canonical entry missing: " + entry)
+        exit(1)
+    }
+    println("[hexa-bot/install] canonical entry OK: cli/hexa-bot.hexa")
+
+    if p == "pre" || p == "both" {
+        println("[hexa-bot/install] [pre] no deps required (spec-only v1.0.0)")
+    }
+
+    if p == "post" || p == "both" {
+        let _ = run_quick_selftest(root)  // warn-only
+    }
+
+    println("[hexa-bot/install] done — hx will generate " + env("HX_BIN_DIR") + "/hexa-bot shim")
+}

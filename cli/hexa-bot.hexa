@@ -1,0 +1,314 @@
+#!hexa strict
+// hexa-bot/cli/hexa-bot.hexa — standalone hexa-bot CLI router (placeholder dispatcher)
+//
+// 4-verb Robot substrate (HEXA family) router:
+//   robotics    — manipulation / arm / actuator primitives          (SPEC)
+//   transport   — ground/aerial transport + logistics primitives    (SPEC)
+//   automation  — control-automation + factory-line primitives      (SPEC)
+//   dog_robot   — quadruped dog-robot test rig + locomotion         (SPEC)
+//
+// Plus utility subcmds:
+//   status      — verb status table (0/4 wired, 4/4 spec)
+//   selftest    — verify all 4 spec files present
+//   help        — this help
+//   --version   — print version
+//
+// Root resolution: $HEXA_BOT_ROOT env, else inferred from $0 dirname.
+//
+// Constraints:
+//   raw#9   — hexa-only orchestration
+//   raw#15  — write-confined (audit log only)
+//   raw#10  — honest C3 caveat: spec-only at v1.0.0; no working numerical sandbox
+//
+// Cost: $0 (Mac local; pure spec dispatcher — prints spec headers only).
+//
+// @no-lock-needed
+// @resolver-bypass(reason="Pure local CLI router; spec-only verbs.")
+
+let VERSION = "1.0.0"
+
+// ─── env / path resolve ───
+
+let HOME = env("HOME")
+let HEXA_BOT_ROOT_ENV = env("HEXA_BOT_ROOT")
+
+fn hexa_bot_root() -> str {
+    if HEXA_BOT_ROOT_ENV.len() > 0 { return HEXA_BOT_ROOT_ENV }
+    let inferred = exec("dirname \"$(dirname \"$0\")\" 2>/dev/null || true").trim()
+    if inferred.len() > 0 { return inferred }
+    return HOME + "/.hexa-bot"  // @allow-devpath
+}
+
+let HB = hexa_bot_root()
+let SPEC_DIR = HB
+
+let SPEC_ROBOTICS   = SPEC_DIR + "/robotics/robotics.md"
+let SPEC_TRANSPORT  = SPEC_DIR + "/transport/robotics-transport.md"
+let SPEC_AUTOMATION = SPEC_DIR + "/automation/control-automation.md"
+let SPEC_DOG_ROBOT  = SPEC_DIR + "/dog_robot/dog-robot-test.md"
+
+let LOG_PATH = HB + "/state/hexa_bot_cli.log"
+
+// ─── arg helpers ───
+
+fn shq(s: str) -> str {
+    return "'" + s.replace("'", "'\\''") + "'"
+}
+
+fn has_flag(a: [str], flag: str) -> bool {
+    for x in a {
+        if x == flag { return true }
+    }
+    return false
+}
+
+fn json_mode(a: [str]) -> bool {
+    return has_flag(a, "--json")
+}
+
+// ─── audit log (jsonl) ───
+
+fn _ts_now() -> str {
+    return exec("date -u '+%Y-%m-%dT%H:%M:%SZ'").trim()
+}
+
+fn _audit(subcmd: str, args_str: str, exit_code: int) {
+    let line = "{\"ts\":\"" + _ts_now() + "\",\"caller\":\"hexa_bot_standalone\",\"subcmd\":\"hexa-bot " +
+               subcmd + "\",\"args\":\"" + args_str.replace("\"", "\\\"") +
+               "\",\"exit_code\":" + str(exit_code) + ",\"version\":\"" + VERSION + "\"}"
+    exec("mkdir -p " + shq(HB + "/state") + " 2>/dev/null")
+    exec("echo " + shq(line) + " >> " + shq(LOG_PATH) + " 2>/dev/null")
+}
+
+// ─── spec presence check ───
+
+fn _file_exists(p: str) -> bool {
+    let r = exec("[ -f " + shq(p) + " ] && echo yes || echo no").trim()
+    return r == "yes"
+}
+
+fn _print_spec_head(label: str, path: str) {
+    if _file_exists(path) == false {
+        println("[" + label + "] SPEC MISSING: " + path)
+        return
+    }
+    println("[" + label + "] spec: " + path)
+    let head = exec("head -n 20 " + shq(path) + " 2>/dev/null").trim()
+    println(head)
+}
+
+// ─── caveat printer (raw#10 honest C3) ───
+
+fn _print_caveats() {
+    println("")
+    println("--- caveats (raw#10 C3) ---")
+    println("  1. v1.0.0 ships SPEC-ONLY. 0/4 verbs have a working numerical sandbox.")
+    println("     Working .hexa CLI dispatcher (this file) is a placeholder router.")
+    println("  2. n=6 invariant lattice (σ=12, τ=4, φ=2, J₂=24) inherited from")
+    println("     n6-architecture sister; not independently verified for robot axes.")
+    println("  3. motorcycle / drone / autonomous-vehicle stack is OUT-OF-SCOPE here.")
+    println("     A post-v1.0 standalone (need-singularity/hexa-mobility) is the planned")
+    println("     home for the 자율 이동체 (autonomous mobility) bundle.")
+    println("  4. No real-hardware actuation, no ROS2 bridge, no safety certification.")
+    println("     This repo is a spec corpus + dispatcher skeleton only.")
+    println("  5. Cross-link substrates: need-singularity/hexa-codex (AI),")
+    println("     need-singularity/anima (consciousness), need-singularity/hexa-bio (molecular).")
+}
+
+// ─── subcommand: status ───
+
+fn cmd_status(a: [str]) {
+    if json_mode(a) {
+        let mut js = "{\"hexa_bot\":\"" + VERSION + "\",\"subcmd\":\"status\","
+        js = js + "\"verbs_total\":4,\"verbs_wired\":0,\"verbs_stub\":4,"
+        js = js + "\"verdict\":\"SPEC_ONLY\","
+        js = js + "\"verbs\":[\"robotics:spec\",\"transport:spec\",\"automation:spec\",\"dog_robot:spec\"]"
+        js = js + "}"
+        println(js)
+        return
+    }
+
+    println("hexa-bot " + VERSION + " status — 4-verb Robot substrate (HEXA family)")
+    println("")
+    println("  verb         status              substrate role")
+    println("  ------------ ------------------- --------------------------------")
+    println("  robotics     SPEC v1.0.0         manipulation / arm / actuator")
+    println("  transport    SPEC v1.0.0         ground+aerial transport + logistics")
+    println("  automation   SPEC v1.0.0         control-automation + factory-line")
+    println("  dog_robot    SPEC v1.0.0         quadruped test rig + locomotion")
+    println("")
+    println("  verdict: SPEC_ONLY (0/4 verbs wired; 4/4 spec corpus)")
+    println("")
+    println("  drill into a verb (prints spec head):")
+    println("    hexa-bot robotics")
+    println("    hexa-bot transport")
+    println("    hexa-bot automation")
+    println("    hexa-bot dog_robot")
+    println("    hexa-bot selftest      (4-verb spec presence sweep)")
+    _print_caveats()
+}
+
+// ─── verb subcommands (placeholder dispatchers) ───
+
+fn cmd_robotics(a: [str]) {
+    _print_spec_head("robotics", SPEC_ROBOTICS)
+    if json_mode(a) {
+        let pass = if _file_exists(SPEC_ROBOTICS) { "true" } else { "false" }
+        println("{\"hexa_bot\":\"" + VERSION + "\",\"subcmd\":\"robotics\",\"spec_present\":" + pass + ",\"status\":\"spec\"}")
+    }
+    _audit("robotics", "", 0)
+}
+
+fn cmd_transport(a: [str]) {
+    _print_spec_head("transport", SPEC_TRANSPORT)
+    if json_mode(a) {
+        let pass = if _file_exists(SPEC_TRANSPORT) { "true" } else { "false" }
+        println("{\"hexa_bot\":\"" + VERSION + "\",\"subcmd\":\"transport\",\"spec_present\":" + pass + ",\"status\":\"spec\"}")
+    }
+    _audit("transport", "", 0)
+}
+
+fn cmd_automation(a: [str]) {
+    _print_spec_head("automation", SPEC_AUTOMATION)
+    if json_mode(a) {
+        let pass = if _file_exists(SPEC_AUTOMATION) { "true" } else { "false" }
+        println("{\"hexa_bot\":\"" + VERSION + "\",\"subcmd\":\"automation\",\"spec_present\":" + pass + ",\"status\":\"spec\"}")
+    }
+    _audit("automation", "", 0)
+}
+
+fn cmd_dog_robot(a: [str]) {
+    _print_spec_head("dog_robot", SPEC_DOG_ROBOT)
+    if json_mode(a) {
+        let pass = if _file_exists(SPEC_DOG_ROBOT) { "true" } else { "false" }
+        println("{\"hexa_bot\":\"" + VERSION + "\",\"subcmd\":\"dog_robot\",\"spec_present\":" + pass + ",\"status\":\"spec\"}")
+    }
+    _audit("dog_robot", "", 0)
+}
+
+// ─── subcommand: selftest ───
+
+fn cmd_selftest(a: [str]) {
+    println("hexa-bot " + VERSION + " selftest — 4-verb spec presence sweep")
+    println("")
+    let r1 = _file_exists(SPEC_ROBOTICS)
+    let r2 = _file_exists(SPEC_TRANSPORT)
+    let r3 = _file_exists(SPEC_AUTOMATION)
+    let r4 = _file_exists(SPEC_DOG_ROBOT)
+    println("  robotics    : " + (if r1 { "PRESENT" } else { "MISSING" }))
+    println("  transport   : " + (if r2 { "PRESENT" } else { "MISSING" }))
+    println("  automation  : " + (if r3 { "PRESENT" } else { "MISSING" }))
+    println("  dog_robot   : " + (if r4 { "PRESENT" } else { "MISSING" }))
+    let pass_overall = r1 && r2 && r3 && r4
+    println("")
+    if pass_overall {
+        println("__HEXA_BOT_SELFTEST__ PASS (4/4 spec files present)")
+    } else {
+        println("__HEXA_BOT_SELFTEST__ FAIL (one or more spec files missing)")
+    }
+    if json_mode(a) {
+        println("{\"hexa_bot\":\"" + VERSION + "\",\"subcmd\":\"selftest\",\"verdict\":\"" + (if pass_overall { "PASS" } else { "FAIL" }) + "\"}")
+    }
+    _print_caveats()
+    _audit("selftest", "", if pass_overall { 0 } else { 1 })
+    if pass_overall == false { exit(1) }
+}
+
+// ─── version ───
+
+fn cmd_version() {
+    println("hexa-bot " + VERSION)
+    println("standalone Robot substrate (HEXA family — extracted from n6-architecture@c0f1f570 2026-05-06)")
+    println("license: MIT")
+    println("repo:    https://github.com/need-singularity/hexa-bot")
+}
+
+// ─── help ───
+
+fn cmd_help() {
+    println("hexa-bot " + VERSION + " — standalone Robot substrate CLI")
+    println("")
+    println("usage: hexa-bot <subcmd> [flags...]")
+    println("")
+    println("verb subcommands (HEXA family — n=6 invariant lattice):")
+    println("  robotics        manipulation / arm / actuator               [SPEC]")
+    println("  transport       ground+aerial transport + logistics         [SPEC]")
+    println("  automation      control-automation + factory-line           [SPEC]")
+    println("  dog_robot       quadruped test rig + locomotion             [SPEC]")
+    println("")
+    println("utility subcommands:")
+    println("  status          0/4-wired verb table + verdict + caveats")
+    println("  selftest        4-verb spec presence sweep")
+    println("")
+    println("global flags:")
+    println("  --version       show version")
+    println("  --json          machine-parseable JSON tail")
+    println("  --help, -h      this help")
+    println("")
+    println("env:")
+    println("  HEXA_BOT_ROOT          override repo root (default: inferred from $0)")
+    println("")
+    println("cost estimate (Mac local): $0 — spec-only dispatcher.")
+    println("")
+    println("spec corpus: " + SPEC_DIR)
+}
+
+// ─── main ───
+
+fn main() {
+    let _raw = args()
+    let mut _sidx = -1
+    let mut _i = 0
+    while _i < _raw.len() {
+        if _raw[_i].ends_with(".hexa") { _sidx = _i; break }
+        _i = _i + 1
+    }
+    let mut _user_start = 2
+    if _sidx >= 0 { _user_start = _sidx + 1 }
+
+    let mut a: [str] = ["hexa_bot_cli", "hexa_bot_router"]
+    let mut _ua = _user_start
+    while _ua < _raw.len() {
+        a = a + [_raw[_ua]]
+        _ua = _ua + 1
+    }
+    let n = len(a)
+
+    if n < 3 {
+        cmd_help()
+        return
+    }
+
+    let sub = a[2]
+
+    if sub == "--version" || sub == "-V" || sub == "version" {
+        cmd_version()
+        return
+    }
+
+    if has_flag(a, "--help") || has_flag(a, "-h") {
+        cmd_help()
+        return
+    }
+
+    if sub == "help" { cmd_help(); return }
+
+    if sub == "status" {
+        cmd_status(a)
+    } else if sub == "robotics" {
+        cmd_robotics(a)
+    } else if sub == "transport" {
+        cmd_transport(a)
+    } else if sub == "automation" {
+        cmd_automation(a)
+    } else if sub == "dog_robot" || sub == "dog-robot" {
+        cmd_dog_robot(a)
+    } else if sub == "selftest" {
+        cmd_selftest(a)
+    } else {
+        eprintln("hexa-bot: unknown subcommand '" + sub + "'")
+        eprintln("run 'hexa-bot help' for usage")
+        _audit(sub, "", 2)
+        exit(2)
+    }
+}

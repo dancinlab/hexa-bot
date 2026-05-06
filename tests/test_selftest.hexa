@@ -1,0 +1,61 @@
+#!hexa strict
+// tests/test_selftest.hexa — hexa-bot 4-verb spec presence sentinel test.
+//
+// Verifies all 4 verb spec files (robotics / transport / automation /
+// dog_robot) are present in the canonical layout. This is the v1.0.0
+// minimum-viable test — it does NOT exercise any numerical path (none
+// exist yet at v1.0.0; see RELEASE_NOTES_v1.0.0.md "Honest scope").
+//
+// Run via:
+//   hexa run tests/test_selftest.hexa
+//   (or: HEXA_BOT_ROOT=$(pwd) hexa run cli/hexa-bot.hexa selftest)
+//
+// raw#9 hexa-only, raw#10 honest C3.
+
+let HOME = env("HOME")
+let HEXA_BOT_ROOT_ENV = env("HEXA_BOT_ROOT")
+
+fn hexa_bot_root() -> str {
+    if HEXA_BOT_ROOT_ENV.len() > 0 { return HEXA_BOT_ROOT_ENV }
+    let inferred = exec("pwd 2>/dev/null || true").trim()
+    if inferred.len() > 0 { return inferred }
+    return HOME + "/.hexa-bot"  // @allow-devpath
+}
+
+let HB = hexa_bot_root()
+
+fn shq(s: str) -> str {
+    return "'" + s.replace("'", "'\\''") + "'"
+}
+
+fn _file_exists(p: str) -> bool {
+    let r = exec("[ -f " + shq(p) + " ] && echo yes || echo no").trim()
+    return r == "yes"
+}
+
+fn _check(label: str, path: str) -> bool {
+    let ok = _file_exists(path)
+    println("  [" + (if ok { "OK " } else { "FAIL" }) + "] " + label + " : " + path)
+    return ok
+}
+
+fn main() {
+    println("hexa-bot tests/test_selftest.hexa — 4-verb spec presence")
+    println("  HEXA_BOT_ROOT = " + HB)
+    println("")
+    let r1 = _check("robotics  ", HB + "/robotics/robotics.md")
+    let r2 = _check("transport ", HB + "/transport/robotics-transport.md")
+    let r3 = _check("automation", HB + "/automation/control-automation.md")
+    let r4 = _check("dog_robot ", HB + "/dog_robot/dog-robot-test.md")
+    let r5 = _check("cli       ", HB + "/cli/hexa-bot.hexa")
+    let r6 = _check("manifest  ", HB + "/hexa.toml")
+    let r7 = _check("license   ", HB + "/LICENSE")
+    println("")
+    let pass_overall = r1 && r2 && r3 && r4 && r5 && r6 && r7
+    if pass_overall {
+        println("__HEXA_BOT_TEST_SELFTEST__ PASS (7/7 sentinels present)")
+    } else {
+        println("__HEXA_BOT_TEST_SELFTEST__ FAIL (one or more sentinels missing)")
+        exit(1)
+    }
+}

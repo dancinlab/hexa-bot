@@ -1,0 +1,65 @@
+# hexa.toml — hexa-bot standalone package manifest
+#
+# Spec: shared/hexa-lang/hexa-toml-spec.json (version 1.0.0)
+# Distribution target: hx install hexa-bot
+# Provenance: extracted from n6-architecture@c0f1f570 on 2026-05-06
+#             (sister substrate to hexa-bio / hexa-codex / anima)
+
+[package]
+name = "hexa-bot"
+version = "1.0.0"
+entry = "cli/hexa-bot.hexa"
+description = "Robot substrate (HEXA family): ROBOTICS / TRANSPORT / AUTOMATION / DOG_ROBOT — 4-verb peripheral-reality embodiment substrate. spec-first; working .hexa CLI dispatcher TBD."
+license = "MIT"
+authors = ["박민우 <nerve011235@gmail.com>"]
+repository = "https://github.com/need-singularity/hexa-bot"
+homepage = "https://github.com/need-singularity/hexa-bot"
+readme = "README.md"
+keywords = ["robotics", "transport", "control-automation", "dog-robot", "hexa-family", "n6-substrate"]
+categories = ["robotics", "embedded", "control-systems"]
+
+[[bin]]
+name = "hexa-bot"
+path = "cli/hexa-bot.hexa"
+
+[test]
+runner = "hexa"
+files = [
+    "tests/test_selftest.hexa",
+]
+
+# ── hx install hook ───────────────────────────────────────
+[scripts]
+install = "install.hexa"
+
+# ── Modules manifest (4 verbs) ────────────────────────────
+# All 4 verbs ship as spec-first .md placeholders at v1.0.0.
+# Working hexa-lang dispatcher modules deferred to post-v1.0 cycles.
+[modules]
+spec = [
+    "robotics/robotics.md",
+    "transport/robotics-transport.md",
+    "automation/control-automation.md",
+    "dog_robot/dog-robot-test.md",
+]
+
+[dependencies]
+hexa-lang = ">=1.0.0"
+
+# ── Closure provenance (raw#10 honest C3) ─────────────────
+[closure]
+verbs_total = 4
+verbs_wired = 0
+verbs_stub = 4
+verdict = "SPEC_ONLY"
+extracted_from = "n6-architecture@c0f1f570 on 2026-05-06"
+
+# ── Scope honesty (raw#10 C3) ─────────────────────────────
+[scope]
+honest_scope = "4-verb robot substrate spec corpus (robotics / transport / control-automation / dog-robot). All 4 verbs ship as spec-first .md (no working numerical sandbox at v1.0.0)."
+not_scope = ["motorcycle / autonomous-vehicle stack (post-spec hexa-mobility standalone candidate)", "ROS2 bridge", "real hardware actuation (purely textual spec)", "safety certification"]
+post_v1_candidate = "motorcycle + drone + auto-vehicle 묶음 → standalone need-singularity/hexa-mobility (자율 이동체 axis)"
+
+# ── Cost profile ──────────────────────────────────────────
+[cost]
+mac_local_default = "$0 (spec-only; no compute path)"
