@@ -1,0 +1,62 @@
+# .roadmap.hexa_bot — repo-overall tracker
+
+> Cross-cutting state: invariant lattice, release cadence, cycle history,
+> deadlines, pointers. Sister of `hexa-codex` / `anima` under `need-singularity`
+> org.
+
+**Last sync**: 2026-05-06 · **Current release**: v1.0.0 · **Branch**: `main`
+
+---
+
+## §0 Terminal goal — 4-verb robot substrate (1+ verb hardware-in-loop wired)
+
+hexa-bot 도착지 = **4-verb robot substrate (robotics + transport + automation + dog-robot) working spec + 1+ verb hardware-in-loop wired**.
+
+DoD:
+1. `robotics` 6-DOF manipulator n=6 IK closed-form .hexa.
+2. `automation` PID τ=4 phase 자동 튜닝 .hexa.
+3. `dog_robot` quadruped τ=4 gait cycle (trot/bound/gallop/walk) .hexa.
+4. `transport` autonomous 통합 + ROS2 cross-verify.
+
+## §A.1 Invariant lattice (n=6)
+
+```
+σ(6) · φ(6) = n · τ(6) = J₂ = 24
+   12   ·   2  =  6  ·   4  = 24
+```
+
+| Symbol | Value | Role | Robot projection |
+|--------|-------|------|------------------|
+| σ(6)   | 12    | sigma — cardinality bin | 12 joint poses / 12 sensor modalities |
+| τ(6)   | 4     | tau — state quartet | 4 gait cycle phases (stance / swing / push / land) |
+| φ(6)   | 2     | phi — verdict bit | sensed / actuated |
+| J₂     | 24    | Mathieu / Leech | 6-DOF IK = O(σ²/J₂) closed-form |
+
+n=6 직접 instance: **6-DOF (degree of freedom) manipulator** = n=6 의 IK closed-form 안식 적용.
+
+## §A.2 Release cadence
+
+| Version | Date | Status | Highlights |
+|---------|------|--------|------------|
+| v1.0.0 | 2026-05-06 | RELEASED | 4 verb 시드 (robotics + transport + automation + dog_robot) |
+| v1.1.0 | ~2026-08 (TARGET) | planned | `robotics` 6-DOF IK closed-form .hexa |
+| v1.2.0 | ~2026-10 | planned | `automation` PID τ=4 phase 자동 튜닝 .hexa |
+| v1.3.0 | ~2026-12 | planned | `dog_robot` τ=4 gait cycle (trot/bound/gallop/walk) .hexa |
+| v2.0.0 | ~2027-Q3 | ASPIRATIONAL | `transport` autonomous 통합 + ROS2 cross-verify |
+
+## §A.3 Cycle history
+
+- **Cycle 0 (2026-05-06)** — v1.0.0 initial extraction from n6-architecture@c0f1f570. Commit `060c552`. 4 verb cp -R.
+
+## §A.4 Falsifier preregister
+
+- **F-BOT-1** — 6-DOF manipulator n=6 IK closed-form, Boston Dynamics Atlas / KUKA spec 비교?
+- **F-BOT-2** — quadruped τ=4 gait cycle 안정 측정 (Boston Dynamics Spot baseline)?
+- **F-BOT-3** — PID τ=4 phase tuning rule, NASA Mars rover (Curiosity / Perseverance) data fit?
+- **F-BOT-4** — robotics-transport autonomous 6-sensor fusion (LIDAR/RGB/depth/IMU/GPS/sonar) σ=12 모드 통합?
+
+## §A.5 Pending decisions
+
+- 6-DOF vs 7-DOF (redundant) 우선 (산업용 KUKA는 6-DOF, humanoid는 7-DOF).
+- ROS2 cross-verify 시점 (외부 dependency 추가).
+- motorcycle 후속 hexa-mobility standalone 분리 후 transport와 어떻게 cross-link.
