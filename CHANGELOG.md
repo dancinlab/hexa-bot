@@ -70,7 +70,7 @@ Versioning: [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html)
 
 ### Added
 
-- Initial extraction from `n6-architecture@c0f1f570`.
+- Initial extraction from `canon@c0f1f570`.
 - 4-verb spec corpus (HEXA family pattern):
   - `robotics/robotics.md`        ← `domains/infra/robotics/`
   - `transport/robotics-transport.md` ← `domains/infra/robotics-transport/`
@@ -99,5 +99,5 @@ Versioning: [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html)
 
 ### Provenance
 
-- Extracted-from: `n6-architecture@c0f1f570`
+- Extracted-from: `canon@c0f1f570`
 - Extraction date: 2026-05-06 (UTC)

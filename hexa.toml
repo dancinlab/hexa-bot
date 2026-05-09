@@ -2,7 +2,7 @@
 #
 # Spec: shared/hexa-lang/hexa-toml-spec.json (version 1.0.0)
 # Distribution target: hx install hexa-bot
-# Provenance: extracted from n6-architecture@c0f1f570 on 2026-05-06
+# Provenance: extracted from canon@c0f1f570 on 2026-05-06
 #             (sister substrate to hexa-bio / hexa-codex / anima)
 
 [package]
@@ -52,7 +52,7 @@ verbs_total = 4
 verbs_wired = 0
 verbs_stub = 4
 verdict = "SPEC_ONLY"
-extracted_from = "n6-architecture@c0f1f570 on 2026-05-06"
+extracted_from = "canon@c0f1f570 on 2026-05-06"
 
 # ── Scope honesty (raw#10 C3) ─────────────────────────────
 [scope]

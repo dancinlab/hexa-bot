@@ -105,7 +105,7 @@ fn _print_caveats() {
     println("  1. v1.0.0 ships SPEC-ONLY. 0/4 verbs have a working numerical sandbox.")
     println("     Working .hexa CLI dispatcher (this file) is a placeholder router.")
     println("  2. n=6 invariant lattice (σ=12, τ=4, φ=2, J₂=24) inherited from")
-    println("     n6-architecture sister; not independently verified for robot axes.")
+    println("     canon sister; not independently verified for robot axes.")
     println("  3. motorcycle / drone / autonomous-vehicle stack is OUT-OF-SCOPE here.")
     println("     A post-v1.0 standalone (need-singularity/hexa-mobility) is the planned")
     println("     home for the 자율 이동체 (autonomous mobility) bundle.")
@@ -311,7 +311,7 @@ fn cmd_selftest(a: [str]) {
 
 fn cmd_version() {
     println("hexa-bot " + VERSION)
-    println("standalone Robot substrate (HEXA family — extracted from n6-architecture@c0f1f570 2026-05-06)")
+    println("standalone Robot substrate (HEXA family — extracted from canon@c0f1f570 2026-05-06)")
     println("license: MIT")
     println("repo:    https://github.com/need-singularity/hexa-bot")
 }

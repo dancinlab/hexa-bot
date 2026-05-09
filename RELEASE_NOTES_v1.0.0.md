@@ -2,7 +2,7 @@
 
 **Date**: 2026-05-06
 **Verdict**: SPEC_ONLY (0/4 verbs wired, 4/4 spec corpus)
-**Provenance**: `n6-architecture@c0f1f570`
+**Provenance**: `canon@c0f1f570`
 **License**: MIT
 
 ---
@@ -30,13 +30,13 @@ hexa-bot/
 ├── cli/
 │   └── hexa-bot.hexa        4-verb placeholder dispatcher
 ├── robotics/
-│   └── robotics.md          ← n6-architecture/domains/infra/robotics/
+│   └── robotics.md          ← canon/domains/infra/robotics/
 ├── transport/
-│   └── robotics-transport.md ← n6-architecture/domains/infra/robotics-transport/
+│   └── robotics-transport.md ← canon/domains/infra/robotics-transport/
 ├── automation/
-│   └── control-automation.md ← n6-architecture/domains/infra/control-automation/
+│   └── control-automation.md ← canon/domains/infra/control-automation/
 ├── dog_robot/
-│   └── dog-robot-test.md    ← n6-architecture/domains/life/dog-robot-test/
+│   └── dog-robot-test.md    ← canon/domains/life/dog-robot-test/
 └── tests/
     └── test_selftest.hexa   4-verb spec presence sentinel
 ```
@@ -59,7 +59,7 @@ hexa-bot/
 - v1.0.0 is **spec-only**. The bundled CLI dispatches sub-commands but
   prints spec-file heads — it executes no working numerical sandbox.
 - The n=6 invariant lattice (σ=12, τ=4, φ=2, J₂=24) is inherited from the
-  n6-architecture canon; no independent verification for the robot axes.
+  canon canon; no independent verification for the robot axes.
 - **motorcycle is intentionally absent.** It belongs to a planned post-v1.0
   standalone (`need-singularity/hexa-mobility`) covering the autonomous
   mobility bundle (motorcycle + drone + autonomous-vehicle, 자율 이동체).
@@ -75,7 +75,7 @@ hexa-bot/
 - AI substrate cousin: `need-singularity/hexa-codex`.
 - Consciousness substrate cousin: `need-singularity/anima`.
 - Apps-axis cousin: `need-singularity/lumiere`.
-- Upstream canon: `need-singularity/n6-architecture` @ `c0f1f570`.
+- Upstream canon: `need-singularity/canon` @ `c0f1f570`.
 
 ---
 

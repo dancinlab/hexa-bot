@@ -1,6 +1,6 @@
-<!-- @canonical: n6-architecture@0570a835:domains/life/dog-robot-test/dog-robot-test.md -->
+<!-- @canonical: canon@d1640e62:domains/life/dog-robot-test/dog-robot-test.md -->
 <!-- @extracted: 2026-05-06 -->
-<!-- @md5_at_extraction: c647a764335a411ace6682bed86daa5a -->
+<!-- @md5_at_extraction: f96170d5f395797296053a9c18954af9 -->
 <!-- gold-standard: shared/harness/sample.md -->
 <!-- @doc(type=paper) -->
 ---
@@ -270,7 +270,7 @@ earlier ones collapsed. Summary exposes a GitHub link.
 ### §21.mk2 IMPACT
 
 <details open>
-<summary>mk2 — <a href="https://github.com/dancinlife/n6-architecture/blob/main/domains/life/dog-robot-test/dog-robot-test.md">github.com/dancinlife/n6-architecture (mk2)</a></summary>
+<summary>mk2 — <a href="https://github.com/dancinlife/canon/blob/main/domains/life/dog-robot-test/dog-robot-test.md">github.com/dancinlife/canon (mk2)</a></summary>
 
 #### 1. What changes
 - TODO core spec deltas
@@ -295,7 +295,7 @@ earlier ones collapsed. Summary exposes a GitHub link.
 ### §21.mk1 IMPACT
 
 <details>
-<summary>mk1 — <a href="https://github.com/dancinlife/n6-architecture/compare/dog-robot-test-mk1-v1.0...main" data-old-blob="domains/life/dog-robot-test/dog-robot-test.md">github.com/dancinlife/n6-architecture (mk1)</a></summary>
+<summary>mk1 — <a href="https://github.com/dancinlife/canon/compare/dog-robot-test-mk1-v1.0...main" data-old-blob="domains/life/dog-robot-test/dog-robot-test.md">github.com/dancinlife/canon (mk1)</a></summary>
 
 #### 1. What changes
 - TODO core spec deltas

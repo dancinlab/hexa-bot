@@ -13,7 +13,7 @@
 # Authoritative rule content remains in `own N <status> ...` blocks below.
 #
 # This file is the project-local SSOT for hexa-bot — the 4-verb robot substrate
-# extracted from n6-architecture@c0f1f570 (2026-05-06) and extended at v1.1.0
+# extracted from canon@c0f1f570 (2026-05-06) and extended at v1.1.0
 # (2026-05-07) with the runnable surface (verify/ + build/ + tests/ +
 # module/firmware/ + module/firmware/sim/ + module/firmware/test/).
 #
@@ -26,7 +26,7 @@
 # - claude opus / sonnet / haiku (AI agents — autonomous within own baselines)
 #
 # ## baselines
-# - n6-architecture canonical SSOT — extraction consumer
+# - canon canonical SSOT — extraction consumer
 # - 4 verb directory names (robotics/, transport/, automation/, dog_robot/)
 #   preserved post-rename — must stay 1:1 with hexa.toml [modules].spec
 # - doc-first repo with thin runnable surface
@@ -62,7 +62,7 @@
 #   + cli/ triplet pattern
 #
 # ## recent_strengthenings
-# - 2026-05-06: v1.0.0 initial extraction from n6-architecture@c0f1f570.
+# - 2026-05-06: v1.0.0 initial extraction from canon@c0f1f570.
 # - 2026-05-07: v1.1.0 runnable surface lands. own 1/2/3 promoted —
 #   n=6 master identity, 4-verb stack contractual, doc-first scope guard
 #   with 5 code-permitted directories (cli/ existed pre-1.1; verify/, build/,

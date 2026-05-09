@@ -2,7 +2,7 @@
 
 > 4-verb robot substrate organized around the **n=6 invariant lattice**:
 > ROBOTICS / TRANSPORT / AUTOMATION / DOG_ROBOT. Spec-first extraction
-> from `n6-architecture@c0f1f570` (2026-05-06). Working `.hexa` CLI
+> from `canon@c0f1f570` (2026-05-06). Working `.hexa` CLI
 > dispatcher is a placeholder; all 4 verbs ship as spec corpus at v1.0.0.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
@@ -19,7 +19,7 @@
 ## Why (n=6 robot substrate)
 
 `hexa-bot` is the **robot-axis sister** in the n=6 substrate family. The
-n6-architecture canon decomposes peripheral reality across six invariant
+canon canon decomposes peripheral reality across six invariant
 substrates; `hexa-bot` carves out the embodiment-and-actuation slice:
 
 ```
@@ -55,13 +55,13 @@ per substrate, σ(6)=12 → 4 verb pairs):
 
 | Verb         | Status | Substrate role                           | Seed source                                            |
 |--------------|--------|------------------------------------------|--------------------------------------------------------|
-| `robotics`   | SPEC   | manipulation / arm / actuator primitives | `n6-architecture/domains/infra/robotics/`              |
-| `transport`  | SPEC   | ground+aerial transport + logistics      | `n6-architecture/domains/infra/robotics-transport/`    |
-| `automation` | SPEC   | control-automation + factory-line        | `n6-architecture/domains/infra/control-automation/`    |
-| `dog_robot`  | SPEC   | quadruped test rig + locomotion          | `n6-architecture/domains/life/dog-robot-test/`         |
+| `robotics`   | SPEC   | manipulation / arm / actuator primitives | `canon/domains/infra/robotics/`              |
+| `transport`  | SPEC   | ground+aerial transport + logistics      | `canon/domains/infra/robotics-transport/`    |
+| `automation` | SPEC   | control-automation + factory-line        | `canon/domains/infra/control-automation/`    |
+| `dog_robot`  | SPEC   | quadruped test rig + locomotion          | `canon/domains/life/dog-robot-test/`         |
 
-All four are extracted directly from `n6-architecture@c0f1f570` via `cp -R`;
-the original n6-architecture trees remain canonical and read-only.
+All four are extracted directly from `canon@c0f1f570` via `cp -R`;
+the original canon trees remain canonical and read-only.
 
 ---
 
@@ -197,7 +197,7 @@ $EDITOR ~/.hexa-bot/dog_robot/dog-robot-test.md
 - [`need-singularity/lumiere`](https://github.com/need-singularity/lumiere)
   — apps-axis spike (camera-filter + hexa-main-character; iOS standalone)
 
-Upstream canon: [`need-singularity/n6-architecture`](https://github.com/need-singularity/n6-architecture)
+Upstream canon: [`need-singularity/canon`](https://github.com/need-singularity/canon)
 @ commit `c0f1f570` (extraction reference SHA).
 
 Planned post-v1.0 cousin: `need-singularity/hexa-mobility` — autonomous
