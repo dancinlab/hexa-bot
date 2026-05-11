@@ -1,6 +1,6 @@
 # Changelog — hexa-bot
 
-All notable changes to `hexa-bot` (need-singularity Robot substrate) are
+All notable changes to `hexa-bot` (dancinlab Robot substrate) are
 documented in this file.
 
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
@@ -88,14 +88,14 @@ Versioning: [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html)
 - 0/4 verbs empirically wired. All 4 ship as `.md` spec corpus.
 - Working `.hexa` numerical sandbox deferred to post-v1.0 cycles.
 - motorcycle / drone / autonomous-vehicle stack OUT-OF-SCOPE — planned
-  for `need-singularity/hexa-mobility` standalone.
+  for `dancinlab/hexa-mobility` standalone.
 
 ### Cross-link
 
-- Sister: `need-singularity/hexa-bio` (molecular, 1/4 wired)
-- Cousin: `need-singularity/hexa-codex` (AI substrate)
-- Cousin: `need-singularity/anima` (consciousness substrate)
-- Cousin: `need-singularity/lumiere` (apps-axis spike)
+- Sister: `dancinlab/hexa-bio` (molecular, 1/4 wired)
+- Cousin: `dancinlab/hexa-codex` (AI substrate)
+- Cousin: `dancinlab/anima` (consciousness substrate)
+- Cousin: `dancinlab/lumiere` (apps-axis spike)
 
 ### Provenance
 

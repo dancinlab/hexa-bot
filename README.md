@@ -156,7 +156,7 @@ hexa run cli/hexa-bot.hexa robotics      # spec head
 ### Via git clone (works today)
 
 ```bash
-git clone https://github.com/need-singularity/hexa-bot.git ~/.hexa-bot
+git clone https://github.com/dancinlab/hexa-bot.git ~/.hexa-bot
 export HEXA_BOT_ROOT=~/.hexa-bot
 export PATH="$HEXA_BOT_ROOT/cli:$PATH"
 
@@ -187,21 +187,21 @@ $EDITOR ~/.hexa-bot/dog_robot/dog-robot-test.md
 
 ## Cross-link
 
-`hexa-bot` is a sibling substrate in the `need-singularity` n=6 family:
+`hexa-bot` is a sibling substrate in the `dancinlab` n=6 family:
 
-- [`need-singularity/hexa-codex`](https://github.com/need-singularity/hexa-codex)
+- [`dancinlab/hexa-codex`](https://github.com/dancinlab/hexa-codex)
   — AI substrate cousin (cognition / language)
-- [`need-singularity/anima`](https://github.com/need-singularity/anima)
+- [`dancinlab/anima`](https://github.com/dancinlab/anima)
   — consciousness substrate cousin (subjective-experience axis)
-- [`need-singularity/hexa-bio`](https://github.com/need-singularity/hexa-bio)
+- [`dancinlab/hexa-bio`](https://github.com/dancinlab/hexa-bio)
   — molecular substrate cousin (4-verb molecular toolkit; sister precedent)
-- [`need-singularity/lumiere`](https://github.com/need-singularity/lumiere)
+- [`dancinlab/lumiere`](https://github.com/dancinlab/lumiere)
   — apps-axis spike (camera-filter + hexa-main-character; iOS standalone)
 
-Upstream canon: [`need-singularity/canon`](https://github.com/need-singularity/canon)
+Upstream canon: [`dancinlab/canon`](https://github.com/dancinlab/canon)
 @ commit `c0f1f570` (extraction reference SHA).
 
-Planned post-v1.0 cousin: `need-singularity/hexa-mobility` — autonomous
+Planned post-v1.0 cousin: `dancinlab/hexa-mobility` — autonomous
 mobility (motorcycle + drone + autonomous-vehicle 자율 이동체 묶음).
 
 ---
@@ -210,4 +210,4 @@ mobility (motorcycle + drone + autonomous-vehicle 자율 이동체 묶음).
 
 MIT. See [LICENSE](LICENSE).
 
-Copyright (c) 2026 박민우 / need-singularity.
+Copyright (c) 2026 박민우 / dancinlab.

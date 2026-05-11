@@ -12,8 +12,8 @@ entry = "cli/hexa-bot.hexa"
 description = "Robot substrate (HEXA family): ROBOTICS / TRANSPORT / AUTOMATION / DOG_ROBOT — 4-verb peripheral-reality embodiment substrate. spec-first; working .hexa CLI dispatcher TBD."
 license = "MIT"
 authors = ["박민우 <nerve011235@gmail.com>"]
-repository = "https://github.com/need-singularity/hexa-bot"
-homepage = "https://github.com/need-singularity/hexa-bot"
+repository = "https://github.com/dancinlab/hexa-bot"
+homepage = "https://github.com/dancinlab/hexa-bot"
 readme = "README.md"
 keywords = ["robotics", "transport", "control-automation", "dog-robot", "hexa-family", "n6-substrate"]
 categories = ["robotics", "embedded", "control-systems"]
@@ -58,7 +58,7 @@ extracted_from = "canon@c0f1f570 on 2026-05-06"
 [scope]
 honest_scope = "4-verb robot substrate spec corpus (robotics / transport / control-automation / dog-robot). All 4 verbs ship as spec-first .md (no working numerical sandbox at v1.0.0)."
 not_scope = ["motorcycle / autonomous-vehicle stack (post-spec hexa-mobility standalone candidate)", "ROS2 bridge", "real hardware actuation (purely textual spec)", "safety certification"]
-post_v1_candidate = "motorcycle + drone + auto-vehicle 묶음 → standalone need-singularity/hexa-mobility (자율 이동체 axis)"
+post_v1_candidate = "motorcycle + drone + auto-vehicle 묶음 → standalone dancinlab/hexa-mobility (자율 이동체 axis)"
 
 # ── Cost profile ──────────────────────────────────────────
 [cost]

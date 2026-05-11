@@ -10,7 +10,7 @@
 ## TL;DR
 
 `hexa-bot` v1.0.0 is the **initial extraction** of the n=6 Robot substrate
-into a standalone `need-singularity` repo. It ships as a **spec-first**
+into a standalone `dancinlab` repo. It ships as a **spec-first**
 4-verb bundle (robotics + transport + automation + dog_robot) with a
 placeholder `.hexa` CLI dispatcher. Working numerical sandboxes are
 explicitly out-of-scope for v1.0.0.
@@ -61,7 +61,7 @@ hexa-bot/
 - The n=6 invariant lattice (σ=12, τ=4, φ=2, J₂=24) is inherited from the
   canon canon; no independent verification for the robot axes.
 - **motorcycle is intentionally absent.** It belongs to a planned post-v1.0
-  standalone (`need-singularity/hexa-mobility`) covering the autonomous
+  standalone (`dancinlab/hexa-mobility`) covering the autonomous
   mobility bundle (motorcycle + drone + autonomous-vehicle, 자율 이동체).
 - No real-hardware actuation. No ROS2 bridge. No safety certification.
   This repo is a spec corpus + dispatcher skeleton.
@@ -70,12 +70,12 @@ hexa-bot/
 
 ## Cross-link
 
-- Sister substrate: `need-singularity/hexa-bio` (molecular, 1/4 wired —
+- Sister substrate: `dancinlab/hexa-bio` (molecular, 1/4 wired —
   the precedent pattern this repo follows).
-- AI substrate cousin: `need-singularity/hexa-codex`.
-- Consciousness substrate cousin: `need-singularity/anima`.
-- Apps-axis cousin: `need-singularity/lumiere`.
-- Upstream canon: `need-singularity/canon` @ `c0f1f570`.
+- AI substrate cousin: `dancinlab/hexa-codex`.
+- Consciousness substrate cousin: `dancinlab/anima`.
+- Apps-axis cousin: `dancinlab/lumiere`.
+- Upstream canon: `dancinlab/canon` @ `c0f1f570`.
 
 ---
 

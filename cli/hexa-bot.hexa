@@ -107,12 +107,12 @@ fn _print_caveats() {
     println("  2. n=6 invariant lattice (σ=12, τ=4, φ=2, J₂=24) inherited from")
     println("     canon sister; not independently verified for robot axes.")
     println("  3. motorcycle / drone / autonomous-vehicle stack is OUT-OF-SCOPE here.")
-    println("     A post-v1.0 standalone (need-singularity/hexa-mobility) is the planned")
+    println("     A post-v1.0 standalone (dancinlab/hexa-mobility) is the planned")
     println("     home for the 자율 이동체 (autonomous mobility) bundle.")
     println("  4. No real-hardware actuation, no ROS2 bridge, no safety certification.")
     println("     This repo is a spec corpus + dispatcher skeleton only.")
-    println("  5. Cross-link substrates: need-singularity/hexa-codex (AI),")
-    println("     need-singularity/anima (consciousness), need-singularity/hexa-bio (molecular).")
+    println("  5. Cross-link substrates: dancinlab/hexa-codex (AI),")
+    println("     dancinlab/anima (consciousness), dancinlab/hexa-bio (molecular).")
 }
 
 // ─── subcommand: status ───
@@ -313,7 +313,7 @@ fn cmd_version() {
     println("hexa-bot " + VERSION)
     println("standalone Robot substrate (HEXA family — extracted from canon@c0f1f570 2026-05-06)")
     println("license: MIT")
-    println("repo:    https://github.com/need-singularity/hexa-bot")
+    println("repo:    https://github.com/dancinlab/hexa-bot")
 }
 
 // ─── help ───
