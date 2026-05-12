@@ -52,20 +52,6 @@ per substrate, σ(6)=12 → 4 verb pairs):
 
 ---
 
-## Verbs
-
-| Verb         | Status | Substrate role                           | Seed source                                            |
-|--------------|--------|------------------------------------------|--------------------------------------------------------|
-| `robotics`   | SPEC   | manipulation / arm / actuator primitives | `canon/domains/infra/robotics/`              |
-| `transport`  | SPEC   | ground+aerial transport + logistics      | `canon/domains/infra/robotics-transport/`    |
-| `automation` | SPEC   | control-automation + factory-line        | `canon/domains/infra/control-automation/`    |
-| `dog_robot`  | SPEC   | quadruped test rig + locomotion          | `canon/domains/life/dog-robot-test/`         |
-
-All four are extracted directly from `canon@c0f1f570` via `cp -R`;
-the original canon trees remain canonical and read-only.
-
----
-
 ## Status
 
 **4-verb robot substrate. mk1.1 — 1/4 verbs (dog_robot) wired, 3/4 spec-only.**
