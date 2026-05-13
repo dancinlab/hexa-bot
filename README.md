@@ -8,9 +8,10 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20102589.svg)](https://doi.org/10.5281/zenodo.20102589)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Version](https://img.shields.io/badge/version-1.1.0-informational.svg)](CHANGELOG.md)
-[![Verbs: 1/4 wired](https://img.shields.io/badge/verbs-1%2F4_wired_(dog__robot_firmware)-yellow.svg)](#verbs)
+[![Verbs: 4 spec](https://img.shields.io/badge/verbs-4_spec-blue.svg)](#module-inventory)
+[![Verbs wired: 1/4](https://img.shields.io/badge/verbs_wired-1%2F4_(dog__robot_firmware)-yellow.svg)](#module-inventory)
 [![n=6 lattice](https://img.shields.io/badge/n%3D6-σ%3D12_τ%3D4_φ%3D2_J₂%3D24-purple.svg)](#why-n6-robot-substrate)
-[![Verify: 5/5](https://img.shields.io/badge/verify-5%2F5_PASS-brightgreen.svg)](verify/cli.py)
+[![Verify: 4/4 PASS](https://img.shields.io/badge/verify-4%2F4_PASS-brightgreen.svg)](verify/run_all.hexa)
 [![Sim: 4/4 gaits](https://img.shields.io/badge/sim-4%2F4_gaits_coherent-brightgreen.svg)](module/firmware/sim/)
 [![Tests: 8/8 unit · 12/13 pytest](https://img.shields.io/badge/tests-8%2F8_unit_·_12%2F13_pytest-brightgreen.svg)](tests/)
 [![Substrate](https://img.shields.io/badge/substrate-peripheral_reality-blue.svg)](#cross-link)
@@ -134,6 +135,34 @@ hexa run cli/hexa-bot.hexa robotics      # spec head
 | `make -C module/firmware/test run` | ✅ 8/8 unit PASS | τ(6)=4 + σ(6)=12 lattice + state machine + servo bounds |
 | `pytest tests/ -v -m auto` | ✅ 12 PASS / 1 SKIP | A-9 (git tag) skips with reason |
 | `hexa run cli/hexa-bot.hexa selftest` | ✅ 4/4 spec sentinels | existing v1.0 path preserved |
+
+---
+
+## Verify
+
+Sister-substrate `verify/run_all.hexa` aggregator pattern (see `hexa-matter`
+/ `hexa-rtsc` / `hexa-cern` / `hexa-fusion` for siblings), scaled to the
+4-verb robot substrate:
+
+```bash
+hexa run verify/run_all.hexa     # exit 0 = all 4 scripts PASS
+```
+
+| Script                              | Closure invariant                                                                |
+|-------------------------------------|----------------------------------------------------------------------------------|
+| `verify/spec_presence.hexa`         | all 4 verb spec docs present at declared paths                                   |
+| `verify/lattice_arithmetic.hexa`    | n=6 self-consistency (σ·φ = n·τ = 24) — *aux only* per `LATTICE_POLICY.md` §1.3  |
+| `verify/real_limits_anchor.hexa`    | `LIMIT_BREAKTHROUGH.md` anchors (Valiant · Madry · Bylander · Bernstein · HELM)  |
+| `verify/closure_consistency.hexa`   | scoreboard cross-check (CLI · `hexa.toml` · README · `AGENTS.md`)                |
+
+Per `LATTICE_POLICY.md` §1.3 / §3.3 + raw#10 C3 honesty: external
+robotics vendors (Boston Dynamics, Tesla Optimus, Agility Robotics,
+Apptronik, Unitree) use **their own specs**, not the n=6 lattice. The
+lattice arithmetic check is a *self-consistency* aux only.
+
+The legacy Python `verify/cli.py` harness (n6 / verbs / cross-doc /
+roadmap / firmware-sync) remains as a runnable-side check; the four
+`.hexa` scripts above are the SPEC_FIRST closure scoreboard.
 
 ---
 
