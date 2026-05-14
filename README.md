@@ -1,3 +1,25 @@
+<p align="center">
+  <img src="docs/logo.svg" width="140" alt="hexa-bot">
+</p>
+
+<h1 align="center">🤖 hexa-bot</h1>
+
+<p align="center"><strong>HEXA-Bot family</strong> — robotics · embodiment · actuation · n=6 substrate</p>
+
+<p align="center">
+  <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-blue"></a>
+  <a href="https://doi.org/10.5281/zenodo.20102589"><img alt="DOI" src="https://zenodo.org/badge/DOI/10.5281/zenodo.20102589.svg"></a>
+  <img alt="Spec" src="https://img.shields.io/badge/spec-v1.1.0-success">
+  <img alt="Verbs" src="https://img.shields.io/badge/verbs-4-informational">
+  <img alt="Wired" src="https://img.shields.io/badge/wired-1%2F4-informational">
+  <img alt="Verify" src="https://img.shields.io/badge/verify-4%2F4%20PASS-brightgreen">
+  <img alt="Family" src="https://img.shields.io/badge/family-HEXA--bio%20·%20HEXA--codex%20·%20anima-blueviolet">
+</p>
+
+<p align="center">robotics · manipulation · transport · automation · dog-robot · quadruped · STM32 · n=6 lattice</p>
+
+---
+
 # 🤖 hexa-bot — Robot substrate (HEXA family)
 
 > 4-verb robot substrate organized around the **n=6 invariant lattice**:
@@ -155,7 +177,6 @@ hexa run verify/run_all.hexa     # exit 0 = all 4 scripts PASS
 | `verify/real_limits_anchor.hexa`    | `LIMIT_BREAKTHROUGH.md` anchors (Valiant · Madry · Bylander · Bernstein · HELM)  |
 | `verify/closure_consistency.hexa`   | scoreboard cross-check (CLI · `hexa.toml` · README · `AGENTS.md`)                |
 
-Per `LATTICE_POLICY.md` §1.3 / §3.3 + raw#10 C3 honesty: external
 robotics vendors (Boston Dynamics, Tesla Optimus, Agility Robotics,
 Apptronik, Unitree) use **their own specs**, not the n=6 lattice. The
 lattice arithmetic check is a *self-consistency* aux only.
@@ -214,6 +235,37 @@ Planned post-v1.0 cousin: `dancinlab/hexa-mobility` — autonomous
 mobility (motorcycle + drone + autonomous-vehicle 자율 이동체 묶음).
 
 ---
+
+## Repo layout
+
+```
+hexa-bot/
+├── README.md                  this file
+├── LICENSE                    MIT
+├── AGENTS.tape                identity + governance (.tape v1.2)
+├── CLAUDE.md                  symlink → AGENTS.tape
+├── hexa.toml                  project metadata
+├── install.hexa               hx install entry
+├── cli/
+│   └── hexa-bot.hexa          top-level CLI dispatcher
+├── robotics/                  manipulation / arm / actuator   [SPEC]
+├── transport/                 ground+aerial + logistics       [SPEC]
+├── automation/                control-automation + factory    [SPEC]
+├── dog_robot/                 quadruped τ(6)=4 gait test rig  [SPEC]
+├── module/firmware/           STM32F429ZIT6 reference (CMSIS-only)
+│   ├── sim/                   host POSIX simulator (no ARM needed)
+│   └── test/                  xunit-style unit tests (8 cases)
+├── verify/                    atlas-anchored audit (4 .hexa + cli.py)
+├── build/                     pandoc PDF rebuild
+├── tests/                     pytest A-1..A-10 acceptance
+├── reference/                 sister-substrate cross-links
+├── origins/                   canon extraction provenance
+├── LATTICE_POLICY.md          n=6 self-consistency aux policy
+├── LIMIT_BREAKTHROUGH.md      per-domain HARD/SOFT_WALL audit
+├── IMPORTED_FROM_CANON.md     extraction reference (canon@c0f1f570)
+├── TAPE-AUDIT.md              .tape v1.x adoption ledger
+└── CHANGELOG.md               change log
+```
 
 ## License
 
