@@ -26,7 +26,6 @@ fn main() {
     println("  scope: native-lattice arithmetic identities ONLY")
     println("  policy: LATTICE_POLICY §1.3 rule 1 — aux check; never sole verification")
     println("  policy: LATTICE_POLICY §1.3 rule 4 — NEVER applied to external entities")
-    println("  reminder (raw#10 C3): Boston Dynamics / Tesla Optimus / Agility")
     println("    Robotics / Apptronik / Unitree use THEIR OWN specs — no lattice-fit.")
     println("")
 

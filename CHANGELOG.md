@@ -56,7 +56,6 @@ Versioning: [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html)
 - `README.md` — Module inventory table, Build & verify section, validation
   sweep, runnable artifact diagram updated.
 
-### Status (raw#10 honest C3)
 
 - 1/4 verbs (`dog_robot`) now ships a register-level firmware reference + host
   sim + unit tests — n=6 lattice is enforced at compile time via _Static_assert.
@@ -83,7 +82,6 @@ Versioning: [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html)
 - `tests/test_selftest.hexa` — 4-verb spec presence sentinel test.
 - `LICENSE` (MIT).
 
-### Status (raw#10 honest C3)
 
 - 0/4 verbs empirically wired. All 4 ship as `.md` spec corpus.
 - Working `.hexa` numerical sandbox deferred to post-v1.0 cycles.

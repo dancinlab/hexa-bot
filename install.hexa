@@ -10,13 +10,10 @@
 //
 // Mirrors hexa-bio/install.hexa pattern (extracted 2026-05-06).
 //
-// Responsibilities (each idempotent, raw#9 STRICT):
 //   1. Pre-install: no-op (spec-only v1.0.0 — zero deps).
 //   2. Post-install: run `hexa-bot selftest` via the freshly-staged
 //      cli/hexa-bot.hexa. Selftest output captured; non-PASS = warn-only.
 //
-// raw#9 hexa-only, raw#11 snake_case, raw#15 no-hardcode.
-// raw#10 honest C3: see hexa-bot/README.md "Status" section.
 
 fn run_quick_selftest(root: str) -> bool {
     let cli = root + "/cli/hexa-bot.hexa"

@@ -54,7 +54,6 @@ hexa-bot/
 
 ---
 
-## Honest scope (raw#10 C3)
 
 - v1.0.0 is **spec-only**. The bundled CLI dispatches sub-commands but
   prints spec-file heads — it executes no working numerical sandbox.

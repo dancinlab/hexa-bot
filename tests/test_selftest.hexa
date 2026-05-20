@@ -10,7 +10,6 @@
 //   hexa run tests/test_selftest.hexa
 //   (or: HEXA_BOT_ROOT=$(pwd) hexa run cli/hexa-bot.hexa selftest)
 //
-// raw#9 hexa-only, raw#10 honest C3.
 
 let HOME = env("HOME")
 let HEXA_BOT_ROOT_ENV = env("HEXA_BOT_ROOT")
